@@ -5,7 +5,7 @@ Virtual threads will work in SpringBoot only for versions > 3.2.0 and it can be 
 ![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/5cfe36ca-cbf0-4f70-8592-ddec6428154e)
 
 
-Scalability in Spring boot using Virtual Threads
+# Scalability in Spring boot using Virtual Threads
 
 At this point, let me remind you about the overall intent of using virtual threads in the first place.
 
@@ -33,7 +33,7 @@ So in the diagram, you see that the user requests are now being served using vir
 ![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/f2fd289d-d87c-4267-a460-22ac940f6813)
 
 
-SpringBoot with Platform Thread
+# SpringBoot with Platform Thread
 
 ![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/28281999-4141-49ff-b8a9-dbf01751cec0)
 
@@ -57,7 +57,7 @@ And this means degraded performance. Certainly, this is configurable and we can 
 ![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/b2ec6bf7-9b8a-4efa-bf50-9fd11a577fb3)
 
 
-SpringBoot with Virtual Thread
+# SpringBoot with Virtual Thread
 
 
 You can switch to using virtual threads In spring boot 3.2.0 and above. 
