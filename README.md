@@ -17,10 +17,74 @@ So to avoid this, we use horizontal scaling to support more users and this adds 
 
 The goal of using virtual threads is to have each instance scale as best as possible and does ultimately requires far less horizontal scaling.
 
-![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/b73a9ce8-4655-4a63-ba1e-01a6762c33e5)
-
 
 ![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/536bd3ff-51c9-4782-bb1a-ad02e1c4cab7)
+
+
+
+But how do we get each instance to scale as best as possible?
+
+Now we will do this by using virtual threads instead of platform threads to serve each user request in spring boot.
+
+Now, by doing so, the number of virtual threads that can run in parallel is endless in theory.
+
+So in the diagram, you see that the user requests are now being served using virtual threads and not platform threads.
+
+![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/f2fd289d-d87c-4267-a460-22ac940f6813)
+
+
+SpringBoot with Platform Thread
+
+![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/28281999-4141-49ff-b8a9-dbf01751cec0)
+
+
+This is a platform thread, which is a Fork Join platform thread , which is served from the Thread Pool. This is no surprise, because application servers always use a thread pool.
+
+![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/11ffa4b3-7920-48fe-8ba8-85d549cabacd)
+
+
+
+Even though the spring boot example is a simple example, it illustrates a very key concept.
+
+What is the size of the thread pool that was used in Spring Boot? Now by default, Tomcat uses a threadpool size of 200.
+
+And since spring Boot is using Tomcat, the default is 200 threads. Now, what this means is that if there are, say, 250 concurrent users hitting our simple spring boot application, 50 of them are going to wait for a platform thread to process their request because all of them are in use at that point.
+
+And this means degraded performance. Certainly, this is configurable and we can increase this thread limit by setting a configuration in the application.properties.
+
+
+
+![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/b2ec6bf7-9b8a-4efa-bf50-9fd11a577fb3)
+
+
+SpringBoot with Virtual Thread
+
+
+You can switch to using virtual threads In spring boot 3.2.0 and above. 
+
+Now on running the application, you get the following 
+
+
+![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/7c40fbbf-1b20-4e06-bfd5-2077d1767fef)
+
+
+So when you access the end point, it gave you a virtual thread, which means this particular request was executed on a virtual thread.
+
+Now, if we keep accessing it just like before, you will see that the thread continuously increases. It's not being pooled.
+
+So you can see the number continues to increase and it's going to 59, 60, 60, and it keeps on going. And over here, the actual platform thread which is being used under the hoods, keep changing.  There are far less platform threads than there are virtual threads.
+
+This also means that the virtual threads are not being pooled  like platform threads as expected for every request.  
+
+Spring Boot is creating a new virtual thread, executing the user request and then terminating the virtual thread.
+
+Now, this is not a surprise. As we already know this.
+
+Now setting this flag virtual to true also means that if you are using annotation at async, that task is also submitted to a virtual thread executor.
+
+
+
+
 
 
 
