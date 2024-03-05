@@ -54,7 +54,8 @@ And this means degraded performance. Certainly, this is configurable and we can 
 
 
 
-![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/b2ec6bf7-9b8a-4efa-bf50-9fd11a577fb3)
+![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/50574585-9d68-4878-9b3a-3f5186aa0b09)
+
 
 
 # SpringBoot with Virtual Thread
