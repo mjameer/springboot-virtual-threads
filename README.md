@@ -61,7 +61,9 @@ And this means degraded performance. Certainly, this is configurable and we can 
 # SpringBoot with Virtual Thread
 
 
-You can switch to using virtual threads In spring boot 3.2.0 and above. 
+You can switch to using virtual threads in Spring boot 3.2.0 and above via the following configurations. 
+
+![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/5cfe36ca-cbf0-4f70-8592-ddec6428154e)
 
 Now on running the application, you get the following 
 
@@ -69,7 +71,7 @@ Now on running the application, you get the following
 ![image](https://github.com/mjameer/springboot-virtual-threads/assets/11364104/7c40fbbf-1b20-4e06-bfd5-2077d1767fef)
 
 
-So when you access the end point, it gave you a virtual thread, which means this particular request was executed on a virtual thread.
+So when you access the endpoint, it gives you a virtual thread, which means this particular request was executed on a virtual thread.
 
 Now, if we keep accessing it just like before, you will see that the thread continuously increases. It's not being pooled.
 
@@ -77,7 +79,7 @@ So you can see the number continues to increase and it's going to 59, 60, 60, an
 
 This also means that the virtual threads are not being pooled  like platform threads as expected for every request.  
 
-Spring Boot is creating a new virtual thread, executing the user request and then terminating the virtual thread.
+Spring Boot creates a new virtual thread, executing the user request and then terminating the virtual thread.
 
 Now, this is not a surprise. As we already know this.
 
